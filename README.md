@@ -114,4 +114,4 @@ crm-app/
 
 ## Author
 
-Kaif Ansari — [kaif.dev](https://kaif.dev) · [github.com/kaifansari-11](https://github.com/kaifansari-11)
+Kaif Ansari — [kaif.dev](https://kaifansari-dev.netlify.app) · [github.com/kaifansari-11](https://github.com/kaifansari-11)
