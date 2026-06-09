@@ -1,0 +1,42 @@
+<%- include('partials/header', { pageTitle: 'New Ticket', activePage: 'new' }) %>
+
+<div class="page-header">
+  <div>
+    <h2>Create New Ticket</h2>
+    <p>Fill in the customer's details and issue information.</p>
+  </div>
+  <a href="/tickets" class="btn btn-outline">← Back to tickets</a>
+</div>
+
+<div class="card" style="max-width:680px">
+  <% if (error) { %>
+    <div class="alert alert-error"><%= error %></div>
+  <% } %>
+
+  <form action="/tickets/new" method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="customer_name">Customer name <span style="color:var(--danger)">*</span></label>
+        <input type="text" id="customer_name" name="customer_name" class="form-control" placeholder="John Doe" required autofocus>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="customer_email">Customer email <span style="color:var(--danger)">*</span></label>
+        <input type="email" id="customer_email" name="customer_email" class="form-control" placeholder="john@example.com" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="subject">Subject / Issue title <span style="color:var(--danger)">*</span></label>
+      <input type="text" id="subject" name="subject" class="form-control" placeholder="e.g. Order not delivered" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="description">Description</label>
+      <textarea id="description" name="description" class="form-control" placeholder="Describe the customer's issue in detail…" rows="5"></textarea>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button type="submit" class="btn btn-primary">Create ticket</button>
+      <a href="/tickets" class="btn btn-outline">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,124 @@
+<%- include('partials/header', { pageTitle: ticket.ticket_id, activePage: 'tickets' }) %>
+
+<div class="page-header">
+  <div>
+    <h2 style="display:flex;align-items:center;gap:10px">
+      <span class="ticket-id" style="font-size:1rem"><%= ticket.ticket_id %></span>
+      <% if (ticket.status === 'Open') { %>
+        <span class="badge badge-open">Open</span>
+      <% } else if (ticket.status === 'In Progress') { %>
+        <span class="badge badge-progress">In Progress</span>
+      <% } else { %>
+        <span class="badge badge-closed">Closed</span>
+      <% } %>
+    </h2>
+    <p style="margin-top:4px"><%= ticket.subject %></p>
+  </div>
+  <a href="/tickets" class="btn btn-outline">← All Tickets</a>
+</div>
+
+<% if (error) { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+<% if (success) { %>
+  <div class="alert alert-success"><%= success %></div>
+<% } %>
+
+<div class="detail-layout">
+
+  <!-- LEFT COLUMN -->
+  <div>
+    <!-- Customer Info -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">Customer information</div>
+      <div class="detail-grid">
+        <div class="detail-field">
+          <label>Name</label>
+          <span><%= ticket.customer_name %></span>
+        </div>
+        <div class="detail-field">
+          <label>Email</label>
+          <span><a href="mailto:<%= ticket.customer_email %>" style="color:var(--accent)"><%= ticket.customer_email %></a></span>
+        </div>
+        <div class="detail-field">
+          <label>Ticket ID</label>
+          <span class="ticket-id" style="font-size:0.875rem"><%= ticket.ticket_id %></span>
+        </div>
+        <div class="detail-field">
+          <label>Created</label>
+          <span><%= new Date(ticket.created_at).toLocaleString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }) %></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">Issue description</div>
+      <% if (ticket.description && ticket.description.trim()) { %>
+        <div class="description-box"><%= ticket.description %></div>
+      <% } else { %>
+        <p style="color:var(--text-muted);font-size:0.875rem;font-style:italic">No description provided.</p>
+      <% } %>
+    </div>
+
+    <!-- Notes -->
+    <div class="card">
+      <div class="card-title">Notes &amp; activity (<%= notes.length %>)</div>
+
+      <% if (notes.length === 0) { %>
+        <div class="empty-notes">No notes yet. Add one below to track your progress.</div>
+      <% } else { %>
+        <div class="notes-list">
+          <% notes.forEach(note => { %>
+          <div class="note-item">
+            <div class="note-meta">
+              <strong style="color:var(--text-dim)"><%= note.author || 'Agent' %></strong>
+              · <%= new Date(note.created_at).toLocaleString('en-IN', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) %>
+            </div>
+            <div class="note-text"><%= note.note_text %></div>
+          </div>
+          <% }) %>
+        </div>
+      <% } %>
+
+      <!-- Add note form -->
+      <form action="/tickets/<%= ticket.ticket_id %>" method="POST">
+        <input type="hidden" name="status" value="<%= ticket.status %>">
+        <div class="form-group" style="margin-bottom:10px">
+          <label class="form-label" for="note_text">Add a note</label>
+          <textarea id="note_text" name="note_text" class="form-control" placeholder="What did you do on this ticket?" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline btn-sm">Add note</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div>
+    <!-- Update Status -->
+    <div class="card">
+      <div class="card-title">Update status</div>
+      <form action="/tickets/<%= ticket.ticket_id %>" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="status">Current status</label>
+          <select id="status" name="status" class="form-control">
+            <option value="Open"        <%= ticket.status === 'Open'        ? 'selected' : '' %>>Open</option>
+            <option value="In Progress" <%= ticket.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+            <option value="Closed"      <%= ticket.status === 'Closed'      ? 'selected' : '' %>>Closed</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm" style="width:100%;justify-content:center">Save status</button>
+      </form>
+
+      <hr class="divider">
+
+      <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.7">
+        <div><strong style="color:var(--text-dim)">Last updated</strong></div>
+        <div><%= ticket.updated_at ? new Date(ticket.updated_at).toLocaleString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '—' %></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%- include('partials/footer') %>

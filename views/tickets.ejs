@@ -1,0 +1,88 @@
+<%- include('partials/header', { pageTitle: 'All Tickets', activePage: 'tickets' }) %>
+
+<div class="page-header">
+  <div>
+    <h2>All Tickets</h2>
+    <p>Search, filter, and manage all support tickets.</p>
+  </div>
+  <a href="/tickets/new" class="btn btn-primary">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    New Ticket
+  </a>
+</div>
+
+<!-- SEARCH & FILTER -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input
+      type="text"
+      id="search-input"
+      class="form-control search-input"
+      placeholder="Search by name, email, ID, or subject…"
+      value="<%= search %>"
+      autocomplete="off"
+    >
+  </div>
+  <select id="filter-status" class="form-control filter-select">
+    <option value="">All statuses</option>
+    <option value="Open"        <%= status === 'Open'        ? 'selected' : '' %>>Open</option>
+    <option value="In Progress" <%= status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+    <option value="Closed"      <%= status === 'Closed'      ? 'selected' : '' %>>Closed</option>
+  </select>
+</div>
+
+<!-- TABLE -->
+<div class="card" style="padding:0;overflow:hidden">
+  <div id="tickets-table">
+    <% if (tickets.length === 0) { %>
+      <div class="empty-state" style="padding:50px 20px">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3>No tickets found</h3>
+        <p>Try adjusting your search or filter.</p>
+      </div>
+    <% } else { %>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ticket ID</th>
+            <th>Customer</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tickets.forEach(ticket => { %>
+          <tr>
+            <td><span class="ticket-id"><%= ticket.ticket_id %></span></td>
+            <td><%= ticket.customer_name %></td>
+            <td style="color:var(--text-muted);font-size:0.82rem"><%= ticket.customer_email %></td>
+            <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><%= ticket.subject %></td>
+            <td>
+              <% if (ticket.status === 'Open') { %>
+                <span class="badge badge-open">Open</span>
+              <% } else if (ticket.status === 'In Progress') { %>
+                <span class="badge badge-progress">In Progress</span>
+              <% } else { %>
+                <span class="badge badge-closed">Closed</span>
+              <% } %>
+            </td>
+            <td style="white-space:nowrap"><%= new Date(ticket.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) %></td>
+            <td><a href="/tickets/<%= ticket.ticket_id %>" class="btn btn-outline btn-sm">View</a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:12px 20px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text-muted)">
+      Showing <%= tickets.length %> ticket<%= tickets.length !== 1 ? 's' : '' %>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
