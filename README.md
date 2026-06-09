@@ -2,7 +2,7 @@
 
 A full-stack customer support ticket management system built for the Datastraw Technologies hiring assessment.
 
-**Live demo:** [support-crm.com](https://supportdesk-crm-itk0.onrender.com/login)
+**Live demo:** [support-crm.com](https://supportdesk-crm-fk72.onrender.com)
 
 ## Tech Stack
 
