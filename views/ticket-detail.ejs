@@ -26,9 +26,9 @@
 
 <div class="detail-layout">
 
-  <!-- LEFT COLUMN -->
+  <!-- left column  -->
   <div>
-    <!-- Customer Info -->
+    <!-- customer info  -->
     <div class="card" style="margin-bottom:16px">
       <div class="card-title">Customer information</div>
       <div class="detail-grid">
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <!-- Description -->
+    <!-- descriptions  -->
     <div class="card" style="margin-bottom:16px">
       <div class="card-title">Issue description</div>
       <% if (ticket.description && ticket.description.trim()) { %>
@@ -61,7 +61,7 @@
       <% } %>
     </div>
 
-    <!-- Notes -->
+  <!-- notes  -->
     <div class="card">
       <div class="card-title">Notes &amp; activity (<%= notes.length %>)</div>
 
@@ -81,7 +81,7 @@
         </div>
       <% } %>
 
-      <!-- Add note form -->
+      <!-- note form  -->
       <form action="/tickets/<%= ticket.ticket_id %>" method="POST">
         <input type="hidden" name="status" value="<%= ticket.status %>">
         <div class="form-group" style="margin-bottom:10px">
@@ -93,9 +93,9 @@
     </div>
   </div>
 
-  <!-- RIGHT COLUMN -->
+<!-- right column  -->
   <div>
-    <!-- Update Status -->
+    <!-- status update  -->
     <div class="card">
       <div class="card-title">Update status</div>
       <form action="/tickets/<%= ticket.ticket_id %>" method="POST">

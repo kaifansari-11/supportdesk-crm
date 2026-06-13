@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
 
-/* ── TOKENS ─────────────────────────────────── */
+/* tokens css */
 :root {
   --bg:         #0f1117;
   --bg-card:    #1a1d27;
@@ -44,7 +44,7 @@
   --accent-glow: rgba(79,110,247,0.1);
 }
 
-/* ── RESET ───────────────────────────────────── */
+/* reset css  */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 15px; }
 body {
@@ -58,10 +58,10 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* ── LAYOUT ──────────────────────────────────── */
+/* layout css  */
 .app-shell { display: flex; min-height: 100vh; }
 
-/* ── SIDEBAR ─────────────────────────────────── */
+/* sidebar css  */
 .sidebar {
   width: 220px;
   background: var(--bg-card);
@@ -160,7 +160,7 @@ a:hover { text-decoration: underline; }
 }
 .btn-logout:hover { border-color: var(--danger); color: var(--danger); }
 
-/* ── MAIN CONTENT ────────────────────────────── */
+/* main content css  */
 .main {
   margin-left: 220px;
   flex: 1;
@@ -197,7 +197,7 @@ a:hover { text-decoration: underline; }
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 .content { padding: 28px; flex: 1; }
 
-/* ── CARDS ───────────────────────────────────── */
+/* card css  */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -214,7 +214,7 @@ a:hover { text-decoration: underline; }
   margin-bottom: 14px;
 }
 
-/* ── STAT GRID ───────────────────────────────── */
+/* stat grid css  */
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -250,7 +250,7 @@ a:hover { text-decoration: underline; }
 .stat-card.closed .stat-value { color: var(--closed); }
 .stat-sub { font-size: 0.72rem; color: var(--text-muted); }
 
-/* ── TABLE ───────────────────────────────────── */
+/* table css  */
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
 thead th {
@@ -273,7 +273,7 @@ tbody tr:hover { background: var(--accent-glow); }
 tbody td { padding: 12px 14px; font-size: 0.875rem; color: var(--text-dim); vertical-align: middle; }
 tbody td:first-child { color: var(--text); }
 
-/* ── TICKET ID ───────────────────────────────── */
+/* ticket id css  */
 .ticket-id {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.8rem;
@@ -281,7 +281,7 @@ tbody td:first-child { color: var(--text); }
   font-weight: 500;
 }
 
-/* ── STATUS BADGE ────────────────────────────── */
+/* status badge css  */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -295,7 +295,7 @@ tbody td:first-child { color: var(--text); }
 .badge-progress { background: var(--progress-bg); color: var(--progress); }
 .badge-closed   { background: var(--closed-bg);   color: var(--closed); }
 
-/* ── FORMS ───────────────────────────────────── */
+/* forms css  */
 .form-group { margin-bottom: 18px; }
 .form-label {
   display: block;
@@ -325,7 +325,7 @@ textarea.form-control { resize: vertical; min-height: 100px; }
 select.form-control { cursor: pointer; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-/* ── BUTTONS ─────────────────────────────────── */
+/* buttons css  */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -352,7 +352,7 @@ select.form-control { cursor: pointer; }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 .btn-sm { padding: 6px 13px; font-size: 0.8rem; }
 
-/* ── SEARCH & FILTER BAR ─────────────────────── */
+/* search and filter bar css  */
 .toolbar {
   display: flex;
   align-items: center;
@@ -372,7 +372,7 @@ select.form-control { cursor: pointer; }
 .search-input { padding-left: 38px; }
 .filter-select { width: 160px; }
 
-/* ── ALERTS ──────────────────────────────────── */
+/* alerts css  */
 .alert {
   padding: 11px 16px;
   border-radius: var(--radius-sm);
@@ -382,7 +382,7 @@ select.form-control { cursor: pointer; }
 .alert-error   { background: rgba(239,68,68,0.1);  border: 1px solid rgba(239,68,68,0.3);  color: #fca5a5; }
 .alert-success { background: rgba(34,197,94,0.1);  border: 1px solid rgba(34,197,94,0.3);  color: #86efac; }
 
-/* ── TICKET DETAIL ───────────────────────────── */
+/* ticket detail css  */
 .detail-header {
   display: flex;
   align-items: flex-start;
@@ -417,7 +417,7 @@ select.form-control { cursor: pointer; }
   margin-bottom: 20px;
 }
 
-/* ── AUTH PAGES ──────────────────────────────── */
+/* auythentication pages css  */
 .auth-shell {
   min-height: 100vh;
   display: flex;
@@ -441,7 +441,7 @@ select.form-control { cursor: pointer; }
 .auth-footer { text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--text-muted); }
 .auth-theme { position: fixed; top: 16px; right: 16px; }
 
-/* ── PAGE HEADER ─────────────────────────────── */
+/* header css  */
 .page-header {
   display: flex;
   align-items: center;
@@ -453,7 +453,7 @@ select.form-control { cursor: pointer; }
 .page-header h2 { font-size: 1.15rem; font-weight: 700; color: var(--text); }
 .page-header p { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
 
-/* ── EMPTY STATE ─────────────────────────────── */
+/* .empty-state css  */
 .empty-state {
   text-align: center;
   padding: 60px 20px;
@@ -463,7 +463,7 @@ select.form-control { cursor: pointer; }
 .empty-state h3 { font-size: 1rem; font-weight: 600; color: var(--text-dim); margin-bottom: 6px; }
 .empty-state p { font-size: 0.85rem; }
 
-/* ── 404 ─────────────────────────────────────── */
+/* 404 page css  */
 .page-404 {
   min-height: 100vh;
   display: flex;
@@ -483,7 +483,7 @@ select.form-control { cursor: pointer; }
 .page-404 h2 { font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
 .page-404 p { color: var(--text-muted); margin-bottom: 24px; font-size: 0.9rem; }
 
-/* ── DESCRIPTION FIELD ───────────────────────── */
+/* descrption field css  */
 .description-box {
   background: var(--bg-input);
   border: 1px solid var(--border);
@@ -496,14 +496,14 @@ select.form-control { cursor: pointer; }
   word-break: break-word;
 }
 
-/* ── DIVIDER ─────────────────────────────────── */
+/* divider cdss  */
 .divider {
   border: none;
   border-top: 1px solid var(--border);
   margin: 22px 0;
 }
 
-/* ── ACTION ROW ──────────────────────────────── */
+/* action row css  */
 .action-row {
   display: flex;
   align-items: flex-end;
@@ -511,9 +511,7 @@ select.form-control { cursor: pointer; }
 }
 .action-row .form-group { margin-bottom: 0; flex: 1; }
 
-/* ── RESPONSIVE ──────────────────────────────── */
-/* ── RESPONSIVE ──────────────────────────────── */
-/* New class to replace the inline style on the detail page */
+/* making it responsive for mobile its css  */
 .detail-layout {
   display: grid;
   grid-template-columns: 1fr 360px;
@@ -521,7 +519,7 @@ select.form-control { cursor: pointer; }
   align-items: start;
 }
 
-/* Mobile Hamburger Menu Icon */
+/* mobile hamburger menu  */
 .menu-toggle {
   display: none;
   background: transparent;
@@ -532,7 +530,7 @@ select.form-control { cursor: pointer; }
 }
 .menu-toggle svg { width: 24px; height: 24px; }
 
-/* Dark overlay when mobile menu is open */
+
 .sidebar-overlay {
   display: none;
   position: fixed;
@@ -551,11 +549,11 @@ select.form-control { cursor: pointer; }
   .sidebar { width: 200px; }
   .main { margin-left: 200px; }
   .stat-grid { grid-template-columns: 1fr 1fr; }
-  .detail-layout { grid-template-columns: 1fr; } /* Stack the detail page */
+  .detail-layout { grid-template-columns: 1fr; } 
 }
 
 @media (max-width: 660px) {
-  /* Show hamburger menu, hide sidebar off-screen */
+
   .menu-toggle { display: block; }
   .sidebar {
     transform: translateX(-100%);
@@ -565,12 +563,12 @@ select.form-control { cursor: pointer; }
     transform: translateX(0);
   }
   
-  /* THE FIX: Stop flexbox from stretching the whole page */
+  
   .main { 
     margin-left: 0; 
-    min-width: 0;       /* Forces the layout to shrink to mobile width */
+    min-width: 0;       
     width: 100%;
-    overflow-x: hidden; /* Prevents the whole screen from swiping sideways */
+    overflow-x: hidden; 
   }
   
   .topbar { padding: 0 16px; }
@@ -579,11 +577,11 @@ select.form-control { cursor: pointer; }
   .stat-grid { grid-template-columns: 1fr; }
   .form-row, .detail-grid { grid-template-columns: 1fr; }
   
-  /* Stack ticket details nicely */
+  
   .detail-header { flex-direction: column; gap: 12px; align-items: flex-start; }
   .detail-header .btn { width: 100%; justify-content: center; }
   
-  /* THE FIX: Apply smooth scrolling strictly to the table */
+  
   .table-wrap {
     width: 100%;
     max-width: 100%;

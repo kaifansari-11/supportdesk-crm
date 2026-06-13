@@ -2,7 +2,7 @@
 
 A full-stack customer support ticket management system built for the Datastraw Technologies hiring assessment.
 
-**Live demo:** [your-app.onrender.com](https://your-app.onrender.com)
+**Live demo:** [supportdesk.onrender.com](https://supportdesk-crm-fk72.onrender.com)
 
 ## Tech Stack
 
@@ -36,7 +36,7 @@ A full-stack customer support ticket management system built for the Datastraw T
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/yourusername/crm-app.git
+git clone https://github.com/kaifansari-11/crm-app.git
 cd crm-app
 
 # 2. Install dependencies
@@ -114,4 +114,4 @@ crm-app/
 
 ## Author
 
-Kaif Ansari — [kaif.dev](https://kaif.dev) · [github.com/kaifansari-11](https://github.com/kaifansari-11)
+Kaif Ansari — [kaif.dev](https://kaifansari-dev.netlify.app) · [github.com/kaifansari-11](https://github.com/kaifansari-11)

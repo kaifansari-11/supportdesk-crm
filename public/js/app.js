@@ -1,4 +1,4 @@
-// ── THEME ────────────────────────────────────────
+// theme 
 const THEME_KEY = 'crm-theme';
 
 function applyTheme(theme) {
@@ -15,13 +15,13 @@ function toggleTheme() {
   applyTheme(current === 'dark' ? 'light' : 'dark');
 }
 
-// Apply saved theme immediately
+// saves the theme 
 (function () {
   const saved = localStorage.getItem(THEME_KEY) || 'dark';
   applyTheme(saved);
 })();
 
-// ── LIVE SEARCH ──────────────────────────────────
+// live search 
 function initLiveSearch() {
   const input = document.getElementById('search-input');
   const filterSelect = document.getElementById('filter-status');
@@ -63,8 +63,7 @@ function initLiveSearch() {
 
 document.addEventListener('DOMContentLoaded', initLiveSearch);
 
-// ── MOBILE SIDEBAR ───────────────────────────────
-// This is now outside and fully visible to your HTML buttons!
+// mobile sidebar 
 function toggleSidebar() {
   const sidebar = document.querySelector('.sidebar');
   const overlay = document.getElementById('sidebar-overlay');

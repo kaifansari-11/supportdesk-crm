@@ -1,4 +1,4 @@
-
+-- all the tables are here if required
 
 CREATE TABLE IF NOT EXISTS users (
   id            INT PRIMARY KEY AUTO_INCREMENT,

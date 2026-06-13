@@ -3,18 +3,14 @@ const router = express.Router();
 const db = require('../db/connection');
 const requireAuth = require('../middleware/auth');
 
-// Helper: generate ticket ID like TKT-001
+// generates ticket ids 
 async function generateTicketId() {
   const [rows] = await db.query('SELECT COUNT(*) as count FROM tickets');
   const count = rows[0].count + 1;
   return `TKT-${String(count).padStart(3, '0')}`;
 }
 
-// ─────────────────────────────────────────
-//  PAGE ROUTES
-// ─────────────────────────────────────────
-
-// GET / — Dashboard
+// get / dashboard 
 router.get('/', requireAuth, async (req, res) => {
   try {
     const [[stats]] = await db.query(`
@@ -35,7 +31,7 @@ router.get('/', requireAuth, async (req, res) => {
   }
 });
 
-// GET /tickets — All tickets with search + filter
+// get / tickets gets all the tickets throgh search bar 
 router.get('/tickets', requireAuth, async (req, res) => {
   const { search = '', status = '' } = req.query;
   try {
@@ -56,12 +52,12 @@ router.get('/tickets', requireAuth, async (req, res) => {
   }
 });
 
-// GET /tickets/new — Create ticket form
+// get/ticcket/new 
 router.get('/tickets/new', requireAuth, (req, res) => {
   res.render('new-ticket', { error: null });
 });
 
-// POST /tickets/new — Create ticket (form submit)
+// post/ ticket /new 
 router.post('/tickets/new', requireAuth, async (req, res) => {
   const { customer_name, customer_email, subject, description } = req.body;
   if (!customer_name || !customer_email || !subject) {
@@ -80,7 +76,7 @@ router.post('/tickets/new', requireAuth, async (req, res) => {
   }
 });
 
-// GET /tickets/:id — Ticket detail
+// ticket id 
 router.get('/tickets/:id', requireAuth, async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM tickets WHERE ticket_id = ?', [req.params.id]);
@@ -97,7 +93,7 @@ router.get('/tickets/:id', requireAuth, async (req, res) => {
   }
 });
 
-// POST /tickets/:id — Update status and/or add note
+// update status or add notre 
 router.post('/tickets/:id', requireAuth, async (req, res) => {
   const { status, note_text } = req.body;
   const ticket_id = req.params.id;
@@ -125,12 +121,10 @@ router.post('/tickets/:id', requireAuth, async (req, res) => {
     res.render('ticket-detail', { ticket: rows[0], notes, error: 'Update failed.', success: null });
   }
 });
+ 
+// all the rest apis 
 
-// ─────────────────────────────────────────
-//  REST API ENDPOINTS
-// ─────────────────────────────────────────
-
-// POST /api/tickets
+// post/api/tickets 
 router.post('/api/tickets', async (req, res) => {
   const { customer_name, customer_email, subject, description } = req.body;
   if (!customer_name || !customer_email || !subject) {
@@ -150,7 +144,7 @@ router.post('/api/tickets', async (req, res) => {
   }
 });
 
-// GET /api/tickets
+// get/api/ticketv 
 router.get('/api/tickets', async (req, res) => {
   const { status, search } = req.query;
   try {
@@ -170,7 +164,7 @@ router.get('/api/tickets', async (req, res) => {
   }
 });
 
-// GET /api/tickets/:id
+// get/api/ticket/id 
 router.get('/api/tickets/:id', async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM tickets WHERE ticket_id = ?', [req.params.id]);
@@ -182,7 +176,7 @@ router.get('/api/tickets/:id', async (req, res) => {
   }
 });
 
-// PUT /api/tickets/:id
+// put//api/tickets/id
 router.put('/api/tickets/:id', async (req, res) => {
   const { status, note_text } = req.body;
   try {
